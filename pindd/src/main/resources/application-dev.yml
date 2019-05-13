@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  datasource:
+  #druid相关配置
+          druid:
+            #基本属性
+            url: jdbc:mysql://127.0.0.1:3306/pdd?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC
+            username: root
+            password: 199388
+
+
