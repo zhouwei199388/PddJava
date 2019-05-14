@@ -134,7 +134,7 @@ public class OrderService {
     }
 
     private Long getScTime(int payTime) {
-        return (long) (payTime + (3600 * 24 * 7));
+        return (long) (payTime + (3600 * 24 * 5));
     }
 
     /**
