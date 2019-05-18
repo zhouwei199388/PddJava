@@ -156,7 +156,7 @@ public class OrderService {
         OrderResponse response = new OrderResponse();
         OrderExample example = new OrderExample();
         OrderExample.Criteria criteria = example.createCriteria();
-        criteria.andSctimeBetween(startLong, endLong);
+        criteria.andPaytimeBetween(startLong, endLong);
         List<Order> orders = mOrderMapper.selectByExample(example);
         ResponseHeader header = new ResponseHeader();
         if (orders.size() > 0) {

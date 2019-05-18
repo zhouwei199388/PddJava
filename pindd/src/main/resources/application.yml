@@ -1,6 +1,6 @@
 spring:
   profiles:
-     active: dev
+     active: ali
   datasource:
         name: mysql_test
         type: com.alibaba.druid.pool.DruidDataSource
