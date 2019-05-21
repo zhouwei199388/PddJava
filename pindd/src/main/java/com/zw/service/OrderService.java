@@ -14,7 +14,9 @@ import com.zw.utils.LogUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zw on 2019/3/24.
@@ -58,12 +60,6 @@ public class OrderService {
         finance.coundagetotal+=order.getPoundage();
     }
 
-//    private void setWlSd(Order order) {
-        //实收-佣金-平台手续费-物流费
-//        Finance finance = mFinanceMapper.selectByPrimaryKey(1);
-
-//        mFinanceMapper.updateByPrimaryKey(finance);
-//    }
 
 
     public boolean addOrders(String orderStr) {
@@ -120,7 +116,7 @@ public class OrderService {
         order.setNickname(itemsBean.getNickname());
         order.setName(itemsBean.getReceive_name());
         order.setNumber(itemsBean.getGoods_number());
-        order.setGoodprice(itemsBean.getGoods_amount());
+        order.setGoodprice(mSkuMap.get(itemsBean.getSku_id()));
         order.setGoodsamount(itemsBean.getGoods_amount() + itemsBean.getPlatform_discount());
         order.setPoundage((int) (order.getGoodsamount() * 0.006));
         order.setFavoritestatus(itemsBean.isFavorite_status() ? 1 : 0);
@@ -186,13 +182,6 @@ public class OrderService {
     }
 
 
-//    public void paramsFinance(){
-//        List<Order> orders = mOrderMapper.selectByExample(new OrderExample());
-//        for(Order order:orders){
-//            setFinance(order);
-//        }
-//    }
-
     /**
      * 修改订单信息
      *
@@ -208,6 +197,40 @@ public class OrderService {
 //            setWlSd(order);
         }
         return header;
+    }
+
+
+    private static Map<Long,Integer> mSkuMap = getSkuPrice();
+    public static Map<Long,Integer> getSkuPrice(){
+        Map<Long,Integer> map = new HashMap<>();
+        //礼恩派弹簧 回弹海绵 天然
+        map.put(140925079193L,245);
+        map.put(140925079194L,245);
+        map.put(140925079195L,285);
+        map.put(140925079196L,285);
+        map.put(140925079197L,325);
+        map.put(140925079198L,325);
+        map.put(140925079199L,365);
+        map.put(140925079200L,365);
+        //礼恩派弹簧 贝卡特针织 3E
+        map.put(140928767963L,310);
+        map.put(140928767964L,310);
+        map.put(140928767965L,350);
+        map.put(140928767966L,350);
+        map.put(140928767967L,390);
+        map.put(140928767968L,390);
+        map.put(140928767969L,430);
+        map.put(140928767970L,430);
+        //乳胶
+        map.put(140930104036L,430);
+        map.put(140930104037L,430);
+        map.put(140930104038L,470);
+        map.put(140930104039L,470);
+        map.put(140930104040L,510);
+        map.put(140930104041L,510);
+        map.put(140930104042L,550);
+        map.put(140930104043L,550);
+        return map;
     }
 
 }
